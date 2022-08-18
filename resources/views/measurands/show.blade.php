@@ -11,7 +11,8 @@
                 </span>
             </h4>
 
-            <div class="table-responsive">
+            <div class="row">
+                <div class="col-md-6 table-responsive">
                 <table class="table table-bordered table-striped table-hover table-myDataTable">
                     <thead class="thead-light">
                         <tr>
@@ -32,7 +33,15 @@
                     </tbody>
                 </table>
             </div>
+
+            <div class="col-md-6">
+                {!! $chart->container() !!}
+                {!! $chart->script() !!}
+            </div>
+            </div>
         </div>
     </div>
+
+    
 </div>
 @endsection

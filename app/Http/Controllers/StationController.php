@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Charts\MeasurandChart;
-use App\Models\Measurand;
+use App\Models\Station;
 use Illuminate\Http\Request;
 
-class MeasurandController extends Controller {
+class StationController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index()
+    {
         //
     }
 
@@ -21,7 +22,8 @@ class MeasurandController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
         //
     }
 
@@ -31,36 +33,30 @@ class MeasurandController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Measurand  $measurand
+     * @param  \App\Models\Station  $station
      * @return \Illuminate\Http\Response
      */
-    public function show(Measurand $measurand) {
-
-        $mreadings = $measurand->readings->pluck('value', 'created_at');
-
-        $chart         = new MeasurandChart;
-        $chart->labels = ($mreadings->keys());
-
-        $chart->dataset('Readings', 'line', $mreadings->values())
-            ->backgroundColor('rgba(0,0,0,.4)');
-
-        return view('measurands.show', compact('measurand', 'chart'));
+    public function show(Station $station)
+    {
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Measurand  $measurand
+     * @param  \App\Models\Station  $station
      * @return \Illuminate\Http\Response
      */
-    public function edit(Measurand $measurand) {
+    public function edit(Station $station)
+    {
         //
     }
 
@@ -68,20 +64,22 @@ class MeasurandController extends Controller {
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Measurand  $measurand
+     * @param  \App\Models\Station  $station
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Measurand $measurand) {
+    public function update(Request $request, Station $station)
+    {
         //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Measurand  $measurand
+     * @param  \App\Models\Station  $station
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Measurand $measurand) {
+    public function destroy(Station $station)
+    {
         //
     }
 }

@@ -177,6 +177,8 @@ return [
 
         App\Providers\ComposerServiceProvider::class,
 
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
+
     ],
 
     /*
