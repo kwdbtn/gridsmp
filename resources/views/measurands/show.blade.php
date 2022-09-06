@@ -5,9 +5,9 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title d-flex justify-content-between">
-                <strong>{{ $measurand->name }}</strong>
+                <strong><span style="color: red">|</span> {{ $measurand->name }} ({{ $measurand->station->name }})</strong>
                 <span class="float-right">
-                    <a href="{{ route('home') }}" class="btn btn-sm btn-dark">Back</a>
+                    <a href="{{ route('stations.show', ['station' => $measurand->station]) }}" class="btn btn-sm btn-dark">Back</a>
                 </span>
             </h4>
 
@@ -17,8 +17,8 @@
                     <thead class="thead-light">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col" style="width: 50%">Value</th>
-                            <th scope="col">Last Updated</th>
+                            <th scope="col" style="width: 50%">Reading</th>
+                            <th scope="col">Date/Time</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -26,7 +26,7 @@
                         @else @foreach ($measurand->readings as $reading)
                         <tr scope="row">
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $reading->value }}{{ $reading->measurement }}</td>
+                            <td>{{ $reading->value }}{{ $reading->unit }}</td>
                             <td>{{ $reading->created_at }}</td>
                         </tr>
                         @endforeach @endif

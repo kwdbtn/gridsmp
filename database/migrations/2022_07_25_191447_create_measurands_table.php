@@ -16,6 +16,7 @@ class CreateMeasurandsTable extends Migration
         Schema::create('measurands', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->integer('station_id')->unsigned();
             $table->timestamps();
         });
     }

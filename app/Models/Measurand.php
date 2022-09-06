@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Measurand extends Model {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['station_id', 'name'];
+
+    public function station() {
+        return $this->belongsTo(Station::class);
+    }
 
     public function readings() {
         return $this->hasMany(Reading::class);

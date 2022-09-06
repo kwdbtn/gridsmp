@@ -17,7 +17,7 @@ class CreateReadingsTable extends Migration
             $table->id();
             $table->integer('measurand_id')->unsigned();
             $table->string('value');
-            $table->string('measurement');
+            $table->string('unit');
             $table->timestamps();
         });
     }

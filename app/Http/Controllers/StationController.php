@@ -5,16 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Station;
 use Illuminate\Http\Request;
 
-class StationController extends Controller
-{
+class StationController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index() {
+        $stations = Station::all();
+        return view('stations.index', compact('stations'));
     }
 
     /**
@@ -22,8 +21,7 @@ class StationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -33,8 +31,7 @@ class StationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -44,9 +41,8 @@ class StationController extends Controller
      * @param  \App\Models\Station  $station
      * @return \Illuminate\Http\Response
      */
-    public function show(Station $station)
-    {
-        //
+    public function show(Station $station) {
+        return view('stations.show', compact('station'));
     }
 
     /**
@@ -55,8 +51,7 @@ class StationController extends Controller
      * @param  \App\Models\Station  $station
      * @return \Illuminate\Http\Response
      */
-    public function edit(Station $station)
-    {
+    public function edit(Station $station) {
         //
     }
 
@@ -67,8 +62,7 @@ class StationController extends Controller
      * @param  \App\Models\Station  $station
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Station $station)
-    {
+    public function update(Request $request, Station $station) {
         //
     }
 
@@ -78,8 +72,7 @@ class StationController extends Controller
      * @param  \App\Models\Station  $station
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Station $station)
-    {
+    public function destroy(Station $station) {
         //
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MeasurandController;
+use App\Http\Controllers\StationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,12 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    return view('home');
-});
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\StationController::class, 'index'])->name('home');
+
+// Route::get('stations', [StationController::class, 'index'])->name('stations.index');
+
+Route::resources([
+    'stations' => StationController::class,
+]);
 
 Route::get('measurands/{measurand}', [MeasurandController::class, 'show'])->name('measurands.show');
+
+Route::get('/', function () {
+    return redirect()->route('stations.index');
+});
