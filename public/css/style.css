@@ -2,3 +2,8 @@ a,
 a:hover {
     text-decoration: none;
 }
+
+.verticalLine {
+    border-left: 4px solid rgb(206, 206, 206);
+    height: 100px;
+}

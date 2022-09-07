@@ -15,6 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -24,7 +25,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('img/favicon.png') }}" alt="" width="28" height="28" class="d-inline-block align-text-top">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -35,7 +36,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('dashboard*') || request()->is('/') ? 'active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
+                        </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('stations*') ? 'active' : '' }}" href="{{ route('stations.index') }}">Stations</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

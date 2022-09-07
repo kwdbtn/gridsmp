@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\StationController::class, 'index'])->name('home');
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
+Route::get('/test', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 
 // Route::get('stations', [StationController::class, 'index'])->name('stations.index');
 
@@ -28,5 +29,5 @@ Route::resources([
 Route::get('measurands/{measurand}', [MeasurandController::class, 'show'])->name('measurands.show');
 
 Route::get('/', function () {
-    return redirect()->route('stations.index');
+    return redirect()->route('dashboard');
 });
