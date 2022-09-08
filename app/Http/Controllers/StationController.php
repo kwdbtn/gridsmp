@@ -12,8 +12,9 @@ class StationController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $stations = Station::all();
-        return view('stations.index', compact('stations'));
+        $stations = Station::orderBy('name')->get();
+        $colors = ['EFFAF9', 'EOF5F3', 'D0F1ED', 'C1ECE7', 'B1E7E1', 'A1E2DB', '92DDD5', '82D9CF', '69D1C5', '63CFC2', '53CABC', '44C5B6', '3ABBAC', '35AC9E', '309C8F', '2B8C81', '267D73', '226D64', '1D5E56', '184E48', '133E39'];
+        return view('stations.index', compact('stations', 'colors'));
     }
 
     /**

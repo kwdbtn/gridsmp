@@ -27,7 +27,7 @@
                         @else @foreach ($station->measurands as $measurand)
                         <tr scope="row">
                             <td>{{ $loop->iteration }}</td>
-                            <td><a href="{{ route('measurands.show', $measurand) }}">Generator {{ $loop->iteration }} ({{ $measurand->name }})</a></td>
+                            <td><a href="{{ route('measurands.show', $measurand) }}">{{ $measurand->name }}</a></td>
                             <td>{{ $measurand->current() }}MW</td>
                             <td>{{ \Carbon\Carbon::parse($measurand->readings->last()->created_at)->diffForHumans() }}</td>
                         </tr>

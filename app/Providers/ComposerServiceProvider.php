@@ -25,5 +25,13 @@ class ComposerServiceProvider extends ServiceProvider {
             $measurands = Measurand::all();
             $view->with('measurands', $measurands);
         });
+
+        // view()->composer('dashboard', function ($view) {
+        //     // $asogli = Station::where('name', 'ASOGLI GS')->totalgeneration();
+        //     $arr = [
+        //         'asogli_gs' => $asogli,
+        //     ];
+        //     $view->with('arr', $arr);
+        // });
     }
 }
