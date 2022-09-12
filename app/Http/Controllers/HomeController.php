@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Measurand;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller {
@@ -21,7 +22,22 @@ class HomeController extends Controller {
      */
     public function index() {
         $results = DB::connection('smp_conn')->select('select * from id_descr');
-        dd($results);
+
+        foreach ($results as $result) {
+            // dd($result->IDTEXT);
+            $measurand = Measurand::where('name', $result->IDTEXT)->first();
+
+            if (!is_null($measurand)) {
+                // dd($measurand);
+
+                $measurand->readings()->create([
+                    'value' => $result->value,
+                    'unit'  => $result->UNIT,
+                ]);
+            }
+        }
+
+        // dd($results);
         return view('home');
     }
 
