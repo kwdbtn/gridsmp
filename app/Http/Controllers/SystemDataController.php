@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Station;
+use App\Models\SystemData;
 use Illuminate\Http\Request;
 
-class StationController extends Controller {
+class SystemDataController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        $stations = Station::orderBy('name')->get();
-        // $colors   = ['D0F1ED', 'D0F1ED', 'D0F1ED', 'C1ECE7', 'B1E7E1', 'A1E2DB', '92DDD5', '82D9CF', '69D1C5', '63CFC2', '53CABC', '44C5B6', '3ABBAC', '35AC9E', '309C8F', '2B8C81', '267D73', '226D64', '1D5E56', '184E48', '133E39'];
-        // return view('stations.index', compact('stations', 'colors'));
-        return view('stations.index', compact('stations'));
+    public function index()
+    {
+        //
     }
 
     /**
@@ -23,7 +22,8 @@ class StationController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
         //
     }
 
@@ -33,27 +33,30 @@ class StationController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Station  $station
+     * @param  \App\Models\SystemData  $systemData
      * @return \Illuminate\Http\Response
      */
-    public function show(Station $station) {
-        return view('stations.show', compact('station'));
+    public function show(SystemData $systemData)
+    {
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Station  $station
+     * @param  \App\Models\SystemData  $systemData
      * @return \Illuminate\Http\Response
      */
-    public function edit(Station $station) {
+    public function edit(SystemData $systemData)
+    {
         //
     }
 
@@ -61,20 +64,22 @@ class StationController extends Controller {
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Station  $station
+     * @param  \App\Models\SystemData  $systemData
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Station $station) {
+    public function update(Request $request, SystemData $systemData)
+    {
         //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Station  $station
+     * @param  \App\Models\SystemData  $systemData
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Station $station) {
+    public function destroy(SystemData $systemData)
+    {
         //
     }
 }

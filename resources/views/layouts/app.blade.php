@@ -7,7 +7,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- Refresh site every 10secs -->
+    <meta http-equiv="refresh" content="10" >
+
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="icon" href="{{ asset('img/favicon.png') }}">
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -41,7 +45,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('stations*') ? 'active' : '' }}" href="{{ route('stations.index') }}">Stations</a>
+                            <a class="nav-link {{ request()->is('stations*') || request()->is('measurands*') ? 'active' : '' }}" href="{{ route('stations.index') }}">Stations</a>
                         </li>
                     </ul>
 

@@ -22,8 +22,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($measurand->readings->isEmpty())
-                        @else @foreach ($measurand->readings as $reading)
+                        @if ($readings->count() < 0)
+                        @else @foreach ($readings as $reading)
                         <tr scope="row">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $reading->value }}{{ $reading->unit }}</td>

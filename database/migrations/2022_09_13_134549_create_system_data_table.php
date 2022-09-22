@@ -4,16 +4,16 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReadingsTable extends Migration {
+class CreateSystemDataTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
     public function up() {
-        Schema::create('readings', function (Blueprint $table) {
+        Schema::create('system_data', function (Blueprint $table) {
             $table->id();
-            $table->integer('measurand_id')->unsigned();
+            $table->string('name');
             $table->string('value');
             $table->string('unit');
             $table->integer('update_time');
@@ -27,6 +27,6 @@ class CreateReadingsTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('readings');
+        Schema::dropIfExists('system_data');
     }
 }

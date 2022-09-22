@@ -43,15 +43,16 @@ class MeasurandController extends Controller {
      */
     public function show(Measurand $measurand) {
 
-        $mreadings = $measurand->readings->pluck('value', 'created_at');
+        $readings = $readings = $measurand->readings()->latest()->limit(10)->get();
+        $mreadings = $readings->pluck('value', 'created_at');
 
-        $chart         = new MeasurandChart;
+        $chart = new MeasurandChart;
         $chart->labels = ($mreadings->keys());
 
         $chart->dataset('Readings', 'line', $mreadings->values())
             ->backgroundColor('rgba(0,0,0,.4)');
 
-        return view('measurands.show', compact('measurand', 'chart'));
+        return view('measurands.show', compact('measurand', 'readings', 'chart'));
     }
 
     /**
