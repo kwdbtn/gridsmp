@@ -36,9 +36,10 @@
                 </table>
             </div>
 
-            {{-- <div class="col-md-6">
-                <h5><span style="color: green">|</span> Total Generation: {{ $station->totalgeneration() }}MW</h5>
-            </div> --}}
+            <div class="col-md-6">
+                {!! $chart->container() !!}
+                {!! $chart->script() !!}
+            </div>
             </div>
         </div>
     </div>

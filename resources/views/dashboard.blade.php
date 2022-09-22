@@ -6,7 +6,7 @@
             <div class="col-md-12 mb-2">
                 <div class="card">
                     <div class="card-body">
-                        <i class="fa fa-bolt" style="color: rgb(147,176,224)"></i> SYSTEM GENERATION 
+                        <i class="fa fa-bolt" style="color: rgb(147,176,224)"></i> GENERATION 
 
                         <span class="float-end"><i class="fa fa-clock-o" style="color: orange"></i> {{ \Carbon\Carbon::now()->toDayDateTimeString() }}</span>
                     </div>
@@ -209,7 +209,5 @@
                 </div>
             </div>
         </div>
-        <br>
-        <small>Browser refreshes automatically every 10 seconds</small>
     </div>
 @endsection

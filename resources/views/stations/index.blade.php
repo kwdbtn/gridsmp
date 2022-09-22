@@ -27,7 +27,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>
                                     <a class="activity-link" href="{{ route('stations.show', $station) }}">
-                                        {{ $station->name }}
+                                        {{ strtoupper($station->name) }}
                                     </a>
                                 </td>
                                 <td>{{ $station->unitcount() }}</td>

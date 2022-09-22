@@ -7,8 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Refresh site every 10secs -->
-    <meta http-equiv="refresh" content="10" >
+    <!-- Refresh site every 30secs -->
+    <meta http-equiv="refresh" content="30" >
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="icon" href="{{ asset('img/favicon.png') }}">
@@ -47,6 +47,10 @@
 
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('stations*') || request()->is('measurands*') ? 'active' : '' }}" href="{{ route('stations.index') }}">Stations</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('summary*') ? 'active' : '' }}" href="{{ route('summary') }}">Summary</a>
                         </li>
                     </ul>
 
@@ -91,6 +95,11 @@
 
         <main class="py-4">
             @yield('content')
+            {{-- <br> --}}
+            <div class="container">
+                <br>
+                <small>Browser refreshes automatically every 30 seconds</small>
+            </div>
         </main>
     </div>
 

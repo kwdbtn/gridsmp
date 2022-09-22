@@ -43,14 +43,20 @@ class MeasurandController extends Controller {
      */
     public function show(Measurand $measurand) {
 
-        $readings = $readings = $measurand->readings()->latest()->limit(10)->get();
-        $mreadings = $readings->pluck('value', 'created_at');
+        $readings = $measurand->readings()->latest()->limit(10)->get()->reverse();
+        $mreadings = $readings->pluck('value', 'update_time');
+
+        $keys = [];
+
+        foreach ($mreadings->keys() as $key) {
+            array_push($keys, \Carbon\Carbon::parse(date("H:i:s", $key))->format("H:i"));
+        }
 
         $chart = new MeasurandChart;
-        $chart->labels = ($mreadings->keys());
+        $chart->labels = ($keys);
 
         $chart->dataset('Readings', 'line', $mreadings->values())
-            ->backgroundColor('rgba(0,0,0,.4)');
+            ->backgroundColor('rgba(238, 41, 41, 0.4)');
 
         return view('measurands.show', compact('measurand', 'readings', 'chart'));
     }

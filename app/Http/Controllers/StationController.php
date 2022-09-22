@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\MeasurandChart;
 use App\Models\Station;
+use App\Models\SystemData;
 use Illuminate\Http\Request;
 
 class StationController extends Controller {
@@ -44,7 +46,22 @@ class StationController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(Station $station) {
-        return view('stations.show', compact('station'));
+        $readings = SystemData::where('name', strtoupper($station->name))->latest()->limit(10)->get()->reverse();
+        $mreadings = $readings->pluck('value', 'update_time');
+
+        $keys = [];
+
+        foreach ($mreadings->keys() as $key) {
+            array_push($keys, \Carbon\Carbon::parse(date("H:i:s", $key))->format("H:i"));
+        }
+
+        $chart = new MeasurandChart;
+        $chart->labels = ($keys);
+        $chart->title('Plant Generation');
+
+        $chart->dataset('Readings', 'line', $mreadings->values())
+            ->backgroundColor('rgba(238, 41, 41, 0.4)');
+        return view('stations.show', compact('station', 'chart'));
     }
 
     /**
