@@ -1,27 +1,41 @@
+
+
 @extends('layouts.app')
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12">
-            <div class="card" style="height: 580px; overflow:auto;">
-                <div class="card-body">
-                    @foreach ($stations as $station)
-                        <a href="{{ route('stations.show', $station) }}">
-                            {{-- <div class="p-3 mb-2 border border-3 border-secondary text-black rounded d-flex justify-content-between" style="background-color: #{{ $colors[$loop->iteration] }}"> --}}
-                            <div class="p-3 mb-2 border border-3 border-secondary text-black rounded d-flex justify-content-between">
-                                <span>
-                                    <strong>{{ $station->name }}</strong><br>
-                                    Total Generation<br>
-                                </span>
-                                <span style="text-align:right">
-                                    <strong>{{ $station->unitcount() }} Units</strong><br>
-                                    <strong>{{ $station->totalgeneration() }} MW</strong><br>
-                                </span>
-                            </div>
-                        </a>
-                    @endforeach
-                </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">GENERATING STATIONS
+                {{-- <span class="float-right"><a href="{{ route('activities.create') }}" class="btn btn-sm btn-dark float-end">Add New</a></span> --}}
+            </h4> <hr>
+
+            <div class="table-responsive">
+                <table class="table table-borderless table-striped table-hover table-myDataTable">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Station</th>
+                            <th scope="col">Unit(s)</th>
+                            <th scope="col">Total Generation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if ($stations->isEmpty())
+                            @else @foreach ($stations as $station)
+                            <tr scope="row" class="m-10">
+                                <td>{{ $loop->iteration }}</td>
+                                <td>
+                                    <a class="activity-link" href="{{ route('stations.show', $station) }}">
+                                        {{ $station->name }}
+                                    </a>
+                                </td>
+                                <td>{{ $station->unitcount() }}</td>
+                                <td>{{ $station->totalgeneration() }} MW</td>
+                            </tr>
+                            @endforeach @endif
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

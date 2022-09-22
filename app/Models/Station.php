@@ -27,6 +27,6 @@ class Station extends Model {
             }
         }
 
-        return $totalgeneration;
+        return round($totalgeneration, 2);
     }
 }

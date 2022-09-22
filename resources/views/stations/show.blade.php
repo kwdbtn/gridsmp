@@ -5,11 +5,11 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title d-flex justify-content-between">
-                <strong><span style="color: red">| </span>{{ $station->name }} ~ {{ $station->unitcount() }} Units</strong>
+                <div><span style="color: red">| </span>{{ $station->name }} ~ {{ $station->unitcount() }} Units</div>
                 <span class="float-right">
                     <a href="{{ route('stations.index') }}" class="btn btn-sm btn-dark">Back</a>
                 </span>
-            </h4>
+            </h4> <hr>
 
             <div class="row">
                 <div class="col-md-6 table-responsive">
@@ -17,7 +17,7 @@
                     <thead class="thead-light">
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col" style="width: 50%">Unit</th>
+                            <th scope="col" style="width: 40%">Unit</th>
                             <th scope="col">Latest Reading</th>
                             <th scope="col">Last Updated</th>
                         </tr>
