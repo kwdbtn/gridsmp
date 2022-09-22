@@ -22,9 +22,7 @@ class Station extends Model {
         $totalgeneration = 0;
 
         foreach ($this->measurands as $measurand) {
-            foreach ($measurand->readings as $reading) {
-                $totalgeneration += $reading->value;
-            }
+            $totalgeneration += $measurand->readings->last()->value;
         }
 
         return round($totalgeneration, 2);

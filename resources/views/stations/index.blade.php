@@ -6,7 +6,7 @@
 <div class="container">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">GENERATING STATIONS
+            <h4 class="card-title"><span style="color: red">| </span>GENERATING STATIONS
                 {{-- <span class="float-right"><a href="{{ route('activities.create') }}" class="btn btn-sm btn-dark float-end">Add New</a></span> --}}
             </h4> <hr>
 
@@ -17,7 +17,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Station</th>
                             <th scope="col">Unit(s)</th>
-                            <th scope="col">Total Generation</th>
+                            {{-- <th scope="col">Total Generation</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -31,7 +31,7 @@
                                     </a>
                                 </td>
                                 <td>{{ $station->unitcount() }}</td>
-                                <td>{{ $station->totalgeneration() }} MW</td>
+                                {{-- <td>{{ $station->totalgeneration() }} MW</td> --}}
                             </tr>
                             @endforeach @endif
                     </tbody>

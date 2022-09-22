@@ -9,7 +9,7 @@
                 <span class="float-right">
                     <a href="{{ route('stations.show', ['station' => $measurand->station]) }}" class="btn btn-sm btn-dark">Back</a>
                 </span>
-            </h4>
+            </h4> <hr>
 
             <div class="row">
                 <div class="col-md-6 table-responsive">
@@ -27,7 +27,7 @@
                         <tr scope="row">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $reading->value }}{{ $reading->unit }}</td>
-                            <td>{{ $reading->created_at }}</td>
+                            <td>{{ \Carbon\Carbon::parse(date("Y-m-d H:i:s", $reading->update_time))->toDayDateTimeString() }}</td>
                         </tr>
                         @endforeach @endif
                     </tbody>

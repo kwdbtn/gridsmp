@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title d-flex justify-content-between">
-                <div><span style="color: red">| </span>{{ $station->name }} ~ {{ $station->unitcount() }} Units</div>
+                <div><span style="color: red">| </span>{{ $station->name }} ~ {{ $station->unitcount() }} Unit(s)</div> TOTAL GENERATION ~ {{ $station->totalgeneration() }}MW
                 <span class="float-right">
                     <a href="{{ route('stations.index') }}" class="btn btn-sm btn-dark">Back</a>
                 </span>
@@ -28,8 +28,8 @@
                         <tr scope="row">
                             <td>{{ $loop->iteration }}</td>
                             <td><a href="{{ route('measurands.show', $measurand) }}">{{ $measurand->name }}</a></td>
-                            <td>{{ $measurand->current() }}MW</td>
-                            <td>{{ \Carbon\Carbon::parse($measurand->readings->last()->created_at)->diffForHumans() }}</td>
+                            <td>{{ round($measurand->current(), 2) }}MW</td> 
+                            <td>{{ \Carbon\Carbon::parse(date("Y-m-d H:i:s", $measurand->readings->last()->update_time))->diffForHumans() }}</td>
                         </tr>
                         @endforeach @endif
                     </tbody>
