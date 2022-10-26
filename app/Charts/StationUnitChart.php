@@ -4,7 +4,7 @@ namespace App\Charts;
 
 use ConsoleTVs\Charts\Classes\Chartjs\Chart;
 
-class MeasurandChart extends Chart {
+class StationUnitChart extends Chart {
     /**
      * Initializes the chart.
      *

@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\MeasurandController;
 use App\Http\Controllers\StationController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
-Route::get('/summary', [App\Http\Controllers\HomeController::class, 'summary'])->name('summary');
+Route::get('summary', [App\Http\Controllers\HomeController::class, 'summary'])->name('summary');
+Route::get('generation-profile', [App\Http\Controllers\HomeController::class, 'generation_profile'])->name('generation-profile');
 Route::get('/test', [App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
 
 // Route::get('stations', [StationController::class, 'index'])->name('stations.index');
@@ -27,7 +26,7 @@ Route::resources([
     'stations' => StationController::class,
 ]);
 
-Route::get('measurands/{measurand}', [MeasurandController::class, 'show'])->name('measurands.show');
+Route::get('station-units/{stationUnit}', [StationUnitController::class, 'show'])->name('station-units.show');
 
 Route::get('/', function () {
     return redirect()->route('dashboard');

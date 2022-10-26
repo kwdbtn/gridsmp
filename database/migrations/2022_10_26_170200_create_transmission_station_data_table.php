@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMeasurandsTable extends Migration
+class CreateTransmissionStationDataTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateMeasurandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('measurands', function (Blueprint $table) {
+        Schema::create('transmission_station_data', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('station_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ class CreateMeasurandsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('measurands');
+        Schema::dropIfExists('transmission_station_data');
     }
 }

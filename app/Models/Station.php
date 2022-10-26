@@ -8,23 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 class Station extends Model {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'type'];
 
-    public function measurands() {
-        return $this->hasMany(Measurand::class);
+    public function station_units() {
+        return $this->hasMany(StationUnit::class);
     }
 
     public function unitcount() {
-        return $this->measurands->count();
+        return $this->station_units->count();
     }
 
     public function totalgeneration() {
         $totalgeneration = 0;
 
-        foreach ($this->measurands as $measurand) {
-            $totalgeneration += $measurand->readings->last()->value;
+        foreach ($this->station_units as $station_unit) {
+            $totalgeneration += $station_unit->readings->last()->value;
         }
 
         return round($totalgeneration, 2);
+    }
+
+    public function TransmissionStationData() {
+        return $this->hasMany(TransmissionStationData::class);
     }
 }

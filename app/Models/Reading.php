@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Reading extends Model {
     use HasFactory;
 
-    protected $fillable = ['measurand_id', 'value', 'unit', 'update_time'];
+    protected $fillable = ['station_unit_id', 'value', 'unit', 'update_time'];
 
-    public function measurand() {
-        return $this->belongsTo(Measurand::class);
+    public function station_unit() {
+        return $this->belongsTo(StationUnit::class);
     }
 }

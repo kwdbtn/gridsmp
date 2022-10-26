@@ -24,12 +24,12 @@
                     </thead>
                     <tbody>
                         @if ($station->measurands->isEmpty())
-                        @else @foreach ($station->measurands as $measurand)
+                        @else @foreach ($station->station_units as $stationUnit)
                         <tr scope="row">
                             <td>{{ $loop->iteration }}</td>
-                            <td><a href="{{ route('measurands.show', $measurand) }}">{{ $measurand->name }}</a></td>
-                            <td>{{ round($measurand->current(), 2) }}MW</td> 
-                            <td>{{ \Carbon\Carbon::parse(date("Y-m-d H:i:s", $measurand->readings->last()->update_time))->diffForHumans() }}</td>
+                            <td><a href="{{ route('stationUnits.show', $stationUnit) }}">{{ $stationUnit->name }}</a></td>
+                            <td>{{ round($stationUnit->current(), 2) }}MW</td> 
+                            <td>{{ \Carbon\Carbon::parse(date("Y-m-d H:i:s", $stationUnit->readings->last()->update_time))->diffForHumans() }}</td>
                         </tr>
                         @endforeach @endif
                     </tbody>

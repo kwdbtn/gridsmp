@@ -164,13 +164,13 @@
                         <table class="table table-responsive">
                             <tr>
                                 <td>BUI</td>
-                                <td>-</td>
-                                <td>-</td>
+                                <td>{{ round($arr['bui_solar_mw']->value, 2) }} {{ $arr['bui_solar_mw']->unit }}</td>
+                                {{-- <td>-</td> --}}
                             </tr>
                             <tr>
                                 <td>KALEO SOLAR</td>
-                                <td>-</td>
-                                <td>-</td>
+                                <td>{{ round($arr['kaleo_solar_mw']->value, 2) }} {{ $arr['kaleo_solar_mw']->unit }}</td>
+                                {{-- <td>-</td> --}}
                             </tr>
                         </table>
                     </div>
@@ -181,8 +181,8 @@
                 <div class="card" style="height: 300px; overflow:auto;">
                     <div class="card-body">
                         <h6 class="text-center"><i class="fa fa-link" style="color: green"></i> TIE LINES</h6>
-                        <h4 class="text-center">-</h4> 
-                        <h4 class="text-center">-</h4> <br>
+                        <h4 class="text-center">{{ round($arr['net_export']->value, 2) }} {{ $arr['net_export']->unit }}</h4>
+                        <h6 class="text-center">{{ \Carbon\Carbon::parse(date("Y-m-d H:i:s", $arr['net_export']->update_time))->toDayDateTimeString() }}</h6> <br>
                         <table class="table table-responsive">
                             <tr>
                                 <td>CIE</td>

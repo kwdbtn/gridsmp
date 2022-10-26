@@ -42,16 +42,29 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('dashboard*') || request()->is('/') ? 'active' : '' }}" href="{{ route('dashboard') }}">Dashboard</a>
+                            <a class="nav-link {{ request()->is('summary*') || request()->is('/') ? 'active' : '' }}" href="{{ route('summary') }}">Summary</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('stations*') || request()->is('measurands*') ? 'active' : '' }}" href="{{ route('stations.index') }}">Stations</a>
+                            <a class="nav-link {{ request()->is('generating-stations*') || request()->is('measurands*') ? 'active' : '' }}" href="{{ route('stations.index') }}">Generating Stations</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('summary*') ? 'active' : '' }}" href="{{ route('summary') }}">Summary</a>
+                            <a class="nav-link {{ request()->is('generation-profile*') ? 'active' : '' }}" href="{{ route('generation-profile') }}">Generation Profile</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('transmission-stations*') ? 'active' : '' }}" href="{{ route('stations.index') }}">Transmission Stations</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('transmission-voltage-profile*') ? 'active' : '' }}" href="{{ route('stations.index') }}">Transmission Voltage Profile</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('transmission-voltage-profile*') ? 'active' : '' }}" href="{{ route('stations.index') }}">Var Compensation</a>
+                        </li>
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->

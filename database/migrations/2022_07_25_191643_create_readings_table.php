@@ -13,7 +13,7 @@ class CreateReadingsTable extends Migration {
     public function up() {
         Schema::create('readings', function (Blueprint $table) {
             $table->id();
-            $table->integer('measurand_id')->unsigned();
+            $table->integer('station_unit_id')->unsigned();
             $table->string('value');
             $table->string('unit');
             $table->integer('update_time');

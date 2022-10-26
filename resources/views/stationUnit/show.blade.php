@@ -5,9 +5,9 @@
     <div class="card">
         <div class="card-body">
             <h4 class="card-title d-flex justify-content-between">
-                <strong><span style="color: red">|</span> {{ $measurand->name }} ({{ $measurand->station->name }})</strong>
+                <strong><span style="color: red">|</span> {{ $stationUnit->name }} ({{ $stationUnit->station->name }})</strong>
                 <span class="float-right">
-                    <a href="{{ route('stations.show', ['station' => $measurand->station]) }}" class="btn btn-sm btn-dark">Back</a>
+                    <a href="{{ route('stations.show', ['station' => $stationUnit->station]) }}" class="btn btn-sm btn-dark">Back</a>
                 </span>
             </h4> <hr>
 

@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Measurand;
+use App\Models\StationUnit;
 use App\Models\SystemData;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -40,10 +40,10 @@ class FetchSMPData extends Command {
         $results = DB::connection('smp_conn')->select('select * from id_descr');
 
         foreach ($results as $result) {
-            $measurand = Measurand::where('name', $result->IDTEXT)->first();
+            $stationUnit = StationUnit::where('name', $result->IDTEXT)->first();
 
-            if (!is_null($measurand)) {
-                $measurand->readings()->create([
+            if (!is_null($stationUnit)) {
+                $stationUnit->readings()->create([
                     'value'       => $result->value,
                     'unit'        => $result->UNIT,
                     'update_time' => $result->time_update,

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Charts\MeasurandChart;
+use App\Charts\StationUnitChart;
 use App\Models\Station;
 use App\Models\SystemData;
 use Illuminate\Http\Request;
@@ -55,7 +55,7 @@ class StationController extends Controller {
             array_push($keys, \Carbon\Carbon::parse(date("H:i:s", $key))->format("H:i"));
         }
 
-        $chart = new MeasurandChart;
+        $chart = new StationUnitChart;
         $chart->labels = ($keys);
         $chart->title('Plant Generation');
 
