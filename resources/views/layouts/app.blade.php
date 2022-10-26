@@ -46,7 +46,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('generating-stations*') || request()->is('measurands*') ? 'active' : '' }}" href="{{ route('stations.index') }}">Generating Stations</a>
+                            <a class="nav-link {{ request()->is('stations/generation*') || request()->is('stations*') || request()->is('station-units*') ? 'active' : '' }}" href="{{ route('stations.generation') }}">Generation Stations</a>
                         </li>
 
                         <li class="nav-item">
@@ -54,16 +54,16 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('transmission-stations*') ? 'active' : '' }}" href="{{ route('stations.index') }}">Transmission Stations</a>
+                            <a class="nav-link {{ request()->is('stations/transmission*') ? 'active' : '' }}" href="{{ route('stations.transmission') }}">Transmission Stations</a>
                         </li>
                         
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('transmission-voltage-profile*') ? 'active' : '' }}" href="{{ route('stations.index') }}">Transmission Voltage Profile</a>
+                            <a class="nav-link {{ request()->is('voltage-profile*') ? 'active' : '' }}" href="{{ route('voltage-profile') }}">Transmission Voltage Profile</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link {{ request()->is('transmission-voltage-profile*') ? 'active' : '' }}" href="{{ route('stations.index') }}">Var Compensation</a>
-                        </li>
+                        {{-- <li class="nav-item">
+                            <a class="nav-link {{ request()->is('transmission-voltage-profile*') ? 'active' : '' }}" href="{{ route('stations.generation') }}">Var Compensation</a>
+                        </li> --}}
                         
                     </ul>
 
@@ -111,7 +111,7 @@
             {{-- <br> --}}
             <div class="container">
                 <br>
-                <small>Browser refreshes automatically every 30 seconds</small>
+                <small>*Data refreshes automatically every 30 seconds</small>
             </div>
         </main>
     </div>

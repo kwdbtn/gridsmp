@@ -13,11 +13,16 @@ class StationController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        $stations = Station::orderBy('name')->get();
-        // $colors   = ['D0F1ED', 'D0F1ED', 'D0F1ED', 'C1ECE7', 'B1E7E1', 'A1E2DB', '92DDD5', '82D9CF', '69D1C5', '63CFC2', '53CABC', '44C5B6', '3ABBAC', '35AC9E', '309C8F', '2B8C81', '267D73', '226D64', '1D5E56', '184E48', '133E39'];
-        // return view('stations.index', compact('stations', 'colors'));
-        return view('stations.index', compact('stations'));
+    public function generation() {
+        $stations = Station::where('type', 'Generation')->orderBy('name')->get();
+        $name = "Generation Stations";
+        return view('stations.index', compact('stations', 'name'));
+    }
+
+    public function transmission() {
+        $stations = Station::where('type', 'transmission')->orderBy('name')->get();
+        $name = "Transmission Stations";
+        return view('stations.index', compact('stations', 'name'));
     }
 
     /**
@@ -45,7 +50,7 @@ class StationController extends Controller {
      * @param  \App\Models\Station  $station
      * @return \Illuminate\Http\Response
      */
-    public function show(Station $station) {
+    public function show_generation(Station $station) {
         $readings = SystemData::where('name', strtoupper($station->name))->latest()->limit(10)->get()->reverse();
         $mreadings = $readings->pluck('value', 'update_time');
 
@@ -62,6 +67,24 @@ class StationController extends Controller {
         $chart->dataset('Readings', 'line', $mreadings->values())
             ->backgroundColor('rgba(238, 41, 41, 0.4)');
         return view('stations.show', compact('station', 'chart'));
+    }
+
+    public function show_transmission(Station $station) {
+        $readings = SystemData::where('name', strtoupper($station->name))->latest()->limit(10)->get()->reverse();
+
+        $keys = [];
+
+        foreach ($readings->keys() as $key) {
+            array_push($keys, \Carbon\Carbon::parse(date("H:i:s", $key))->format("H:i"));
+        }
+
+        $chart = new StationUnitChart;
+        $chart->labels = ($keys);
+        // $chart->title('Plant Generation');
+
+        $chart->dataset('Readings', 'line', $readings->values())
+            ->backgroundColor('rgba(238, 41, 41, 0.4)');
+        return view('stations.transmission', compact('station', 'chart'));
     }
 
     /**

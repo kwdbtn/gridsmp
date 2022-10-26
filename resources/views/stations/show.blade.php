@@ -7,7 +7,7 @@
             <h4 class="card-title d-flex justify-content-between">
                 <div><span style="color: red">| </span>{{ $station->name }} ~ {{ $station->unitcount() }} Unit(s)</div> TOTAL GENERATION ~ {{ $station->totalgeneration() }}MW
                 <span class="float-right">
-                    <a href="{{ route('stations.index') }}" class="btn btn-sm btn-dark">Back</a>
+                    <a href="{{ route('stations.generation') }}" class="btn btn-sm btn-dark">Back</a>
                 </span>
             </h4> <hr>
 
@@ -23,11 +23,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($station->measurands->isEmpty())
+                        @if ($station->station_units->isEmpty())
                         @else @foreach ($station->station_units as $stationUnit)
                         <tr scope="row">
                             <td>{{ $loop->iteration }}</td>
-                            <td><a href="{{ route('stationUnits.show', $stationUnit) }}">{{ $stationUnit->name }}</a></td>
+                            <td><a href="{{ route('station-units.show', $stationUnit) }}">{{ $stationUnit->name }}</a></td>
                             <td>{{ round($stationUnit->current(), 2) }}MW</td> 
                             <td>{{ \Carbon\Carbon::parse(date("Y-m-d H:i:s", $stationUnit->readings->last()->update_time))->diffForHumans() }}</td>
                         </tr>

@@ -4,16 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStationUnitsTable extends Migration
-{
+class CreateStationUnitsTable extends Migration {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('station_unit', function (Blueprint $table) {
+    public function up() {
+        Schema::create('station_units', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->integer('station_id')->unsigned();
@@ -26,8 +24,7 @@ class CreateStationUnitsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::dropIfExists('measurands');
     }
 }
