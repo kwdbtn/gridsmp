@@ -26,8 +26,8 @@ Route::get('/test', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('stations/generation', [StationController::class, 'generation'])->name('stations.generation');
 Route::get('stations/transmission', [StationController::class, 'transmission'])->name('stations.transmission');
-Route::get('stations/{station}/generation', [StationController::class, 'show_generation'])->name('stations.show-generation');
-Route::get('stations/{station}/transmission', [StationController::class, 'show_transmission'])->name('stations.show-transmission');
+Route::get('stations/generation/{station}', [StationController::class, 'show_generation'])->name('stations.show-generation');
+Route::get('stations/transmission/{station}', [StationController::class, 'show_transmission'])->name('stations.show-transmission');
 
 Route::get('station-units/{stationUnit}', [StationUnitController::class, 'show'])->name('station-units.show');
 

@@ -28,7 +28,7 @@ class Station extends Model {
         return round($totalgeneration, 2);
     }
 
-    public function TransmissionStationData() {
+    public function transmission_station_data() {
         return $this->hasMany(TransmissionStationData::class);
     }
 }

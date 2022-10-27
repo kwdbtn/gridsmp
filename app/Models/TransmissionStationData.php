@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class TransmissionStationData extends Model {
     use HasFactory;
 
-    protected $fillable = ['station_id', 'mv', 'mvar', 'hv_bus_voltage', 'lv_bus_voltage'];
+    protected $fillable = ['station_id', 'name', 'value', 'unit', 'update_time'];
 
-    public function Station() {
-        return $this->belongsTo(TransmissionStationData::class);
+    public function station() {
+        return $this->belongsTo(Station::class);
     }
 }

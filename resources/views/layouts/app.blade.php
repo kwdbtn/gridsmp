@@ -46,7 +46,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('stations/generation*') || request()->is('stations*') || request()->is('station-units*') ? 'active' : '' }}" href="{{ route('stations.generation') }}">Generation Stations</a>
+                            <a class="nav-link {{ request()->is('stations/generation*') || request()->is('station-units*') ? 'active' : '' }}" href="{{ route('stations.generation') }}">Generation Stations</a>
                         </li>
 
                         <li class="nav-item">

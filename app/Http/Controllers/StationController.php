@@ -15,13 +15,13 @@ class StationController extends Controller {
      */
     public function generation() {
         $stations = Station::where('type', 'Generation')->orderBy('name')->get();
-        $name = "Generation Stations";
+        $name     = "Generation Stations";
         return view('stations.index', compact('stations', 'name'));
     }
 
     public function transmission() {
         $stations = Station::where('type', 'transmission')->orderBy('name')->get();
-        $name = "Transmission Stations";
+        $name     = "Transmission Stations";
         return view('stations.index', compact('stations', 'name'));
     }
 
@@ -51,7 +51,7 @@ class StationController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show_generation(Station $station) {
-        $readings = SystemData::where('name', strtoupper($station->name))->latest()->limit(10)->get()->reverse();
+        $readings  = SystemData::where('name', strtoupper($station->name))->latest()->limit(10)->get()->reverse();
         $mreadings = $readings->pluck('value', 'update_time');
 
         $keys = [];
@@ -60,7 +60,7 @@ class StationController extends Controller {
             array_push($keys, \Carbon\Carbon::parse(date("H:i:s", $key))->format("H:i"));
         }
 
-        $chart = new StationUnitChart;
+        $chart         = new StationUnitChart;
         $chart->labels = ($keys);
         $chart->title('Plant Generation');
 
@@ -70,21 +70,42 @@ class StationController extends Controller {
     }
 
     public function show_transmission(Station $station) {
-        $readings = SystemData::where('name', strtoupper($station->name))->latest()->limit(10)->get()->reverse();
 
-        $keys = [];
+        // -------------------------------------------------------- MW -----------------------------------------------------------------------------------------------------
 
-        foreach ($readings->keys() as $key) {
-            array_push($keys, \Carbon\Carbon::parse(date("H:i:s", $key))->format("H:i"));
+        $mwreadings      = $station->transmission_station_data->where('unit', "MW")->toQuery()->latest()->limit(10)->get()->reverse();
+        $mwchartReadings = $mwreadings->pluck('value', 'update_time');
+
+        $keysMW = [];
+
+        foreach ($mwchartReadings->keys() as $key) {
+            array_push($keysMW, \Carbon\Carbon::parse(date("H:i:s", $key))->format("H:i"));
         }
 
-        $chart = new StationUnitChart;
-        $chart->labels = ($keys);
-        // $chart->title('Plant Generation');
+        $chartMW         = new StationUnitChart;
+        $chartMW->labels = ($keysMW);
 
-        $chart->dataset('Readings', 'line', $readings->values())
+        $chartMW->dataset('Station Load (MW)', 'line', $mwchartReadings->values())
             ->backgroundColor('rgba(238, 41, 41, 0.4)');
-        return view('stations.transmission', compact('station', 'chart'));
+
+        // -------------------------------------------------------- MVAR -----------------------------------------------------------------------------------------------------
+
+        $mvarreadings      = $station->transmission_station_data->toQuery()->where('unit', "MVAR")->orWhere('name', 'MVar')->latest()->limit(10)->get()->reverse();
+        $mvarchartReadings = $mvarreadings->pluck('value', 'update_time');
+
+        $keysMVAR = [];
+
+        foreach ($mvarchartReadings->keys() as $key) {
+            array_push($keysMVAR, \Carbon\Carbon::parse(date("H:i:s", $key))->format("H:i"));
+        }
+
+        $chartMVAR         = new StationUnitChart;
+        $chartMVAR->labels = ($keysMVAR);
+
+        $chartMVAR->dataset('Station Load (MVAR)', 'line', $mvarchartReadings->values())
+            ->backgroundColor('rgba(238, 41, 41, 0.4)');
+
+        return view('stations.transmission', compact('station', 'mwreadings', 'mvarreadings', 'chartMW', 'chartMVAR'));
     }
 
     /**
