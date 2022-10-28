@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Refresh site every 30secs -->
-    <meta http-equiv="refresh" content="30" >
+    <meta http-equiv="refresh" content="60" >
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="icon" href="{{ asset('img/favicon.png') }}">
@@ -111,7 +111,7 @@
             {{-- <br> --}}
             <div class="container">
                 <br>
-                <small>*Data refreshes automatically every 30 seconds</small>
+                <small>*Data refreshes automatically every 60 seconds</small>
             </div>
         </main>
     </div>
