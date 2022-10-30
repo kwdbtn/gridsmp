@@ -159,8 +159,8 @@
                 <div class="card" style="height: 300px; overflow:auto;">
                     <div class="card-body">
                         <h6 class="text-center"><i class="fa fa-sun-o" style="color:rgb(165, 165, 10)"></i> SOLAR</h6>
-                        <h4 class="text-center">-</h4>
-                        <h6 class="text-center">-</h6> <br>
+                        <h4 class="text-center">{{ round($arr['total_solar']->value, 2) }} {{ $arr['total_solar']->unit }}</h4>
+                        <h6 class="text-center">{{ \Carbon\Carbon::parse(date("Y-m-d H:i:s", $arr['total_solar']->update_time))->toDayDateTimeString() }}</h6> <br>
                         <table class="table table-responsive">
                             <tr>
                                 <td>BUI</td>
@@ -169,7 +169,7 @@
                             </tr>
                             <tr>
                                 <td>KALEO SOLAR</td>
-                                <td>{{ round($arr['kaleo_solar_mw']->value, 2) }} {{ $arr['kaleo_solar_mw']->unit }}</td>
+                                <td>{{ abs(round($arr['kaleo_solar_mw']->value, 2)) }} {{ $arr['kaleo_solar_mw']->unit }}</td>
                                 {{-- <td>-</td> --}}
                             </tr>
                         </table>

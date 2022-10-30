@@ -80,6 +80,7 @@ class HomeController extends Controller {
             'net_export'         => SystemData::where('name', 'NET GHANA EXPORT')->latest()->limit(1)->get()->last(),
             'kaleo_solar_mw'     => SystemData::where('name', 'KALEO SOLAR MW')->latest()->limit(1)->get()->last(),
             'bui_solar_mw'       => SystemData::where('name', 'BUI SOLAR MW')->latest()->limit(1)->get()->last(),
+            'total_solar'        => SystemData::where('name', 'TOTAL SOLAR')->latest()->limit(1)->get()->last(),
         ];
 
         $vra         = SystemData::where('name', 'Total VRA Generation')->latest()->limit(20)->get()->reverse();
@@ -127,6 +128,9 @@ class HomeController extends Controller {
         $hydro         = SystemData::where('name', 'Total Hydro Generation')->latest()->limit(10)->get();
         $hydroReadings = $hydro->pluck('value', 'update_time');
 
+        $solar         = SystemData::where('name', 'TOTAL SOLAR')->latest()->limit(10)->get();
+        $solarReadings = $solar->pluck('value', 'update_time');
+
         $systemGeneration         = SystemData::where('name', 'System Generation')->latest()->limit(10)->get();
         $systemGenerationReadings = $systemGeneration->pluck('value', 'update_time');
 
@@ -144,6 +148,12 @@ class HomeController extends Controller {
             ->options(['borderWidth' => '4'])
             ->options(['pointHoverRadius' => '5'])
             ->backgroundColor('rgba(41, 255, 244, 0)');
+
+        $chart->dataset('Solar (MW)', 'line', $solarReadings->values())
+            ->options(['borderColor' => 'yellow'])
+            ->options(['borderWidth' => '4'])
+            ->options(['pointHoverRadius' => '5'])
+            ->backgroundColor('rgba(5, 5, 5, 0)');
 
         $chart->dataset('System Generation (MW)', 'line', $systemGenerationReadings->values())
             ->options(['borderColor' => 'rgba(5, 5, 5, 0.8)'])
