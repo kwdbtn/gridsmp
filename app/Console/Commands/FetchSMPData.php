@@ -70,7 +70,7 @@ class FetchSMPData extends Command {
                     'value'       => $data->value,
                     'update_time' => $data->time_update,
                 ]);
-            } else if ($data->IDTEXT == "VOLTA 161 kW" || $data->IDTEXT == "VOLTA 161 kVAR" || $data->IDTEXT == "Volta Bus" || $data->IDTEXT == "VOLTA 161 FEEDER VOLTAGE") {
+            } else if ($data->IDTEXT == "VOLTA 161 MW" || $data->IDTEXT == "VOLTA 161 MVR" || $data->IDTEXT == "Volta Bus" || $data->IDTEXT == "VOLTA 161 FEEDER VOLTAGE") {
                 TransmissionStationData::create([
                     'station_id'  => 22,
                     'name'        => $data->IDTEXT,
